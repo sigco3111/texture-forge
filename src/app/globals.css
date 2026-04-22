@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #111111;
+  --color-foreground: #e0e0e0;
+  --color-surface: #1a1a1a;
+  --color-surface-light: #222222;
+  --color-border: #333333;
+  --color-muted: #999999;
+  --color-accent: #4a9eff;
+  --color-accent-hover: #6ab4ff;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Checkerboard pattern for transparent areas in canvas */
+.checkerboard-bg {
+  background-image:
+    linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+    linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+    linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-color: #1e1e1e;
+}
