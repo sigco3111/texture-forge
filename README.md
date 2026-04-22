@@ -1,12 +1,12 @@
-# 🎨 텍스처 포지 — 절차적 텍스처 생성기
+# 🎨 Texture Forge — Procedural Texture Generator
 
-> Perlin/Simplex/Worley 노이즈로 18종 2D 텍스처를 브라우저에서 실시간 생성
+> Perlin / Simplex / Worley noise 기반 18종 2D 텍스처를 브라우저에서 실시간 생성하는 도구
 
-## 📋 프로젝트 개요
+**🔗 [라이브 데모](https://texture-forge-delta.vercel.app)**
 
 절차적 생성(Procedural Generation) 기반의 텍스처 생성기입니다. 노이즈 알고리즘 파라미터를 실시간으로 조절하면서 텍스처를 미리보고, 원하는 결과를 PNG로 다운로드할 수 있습니다. 게임 개발자, 3D 아티스트, 디자이너가 브라우저에서 바로 사용할 수 있는 실용적 도구입니다.
 
-**외부 API 없음, 외부 파일 없음, 비용 0**
+**외부 API 없음 · 외부 파일 없음 · 비용 0 · 서버리스**
 
 ## 🛠️ 기술 스택
 
@@ -14,11 +14,12 @@
 |------|------|
 | 프레임워크 | Next.js 16 (App Router, Turbopack) |
 | 언어 | TypeScript |
-| 렌더링 | HTML5 Canvas (ImageData + putImageData) |
-| 노이즈 엔진 | simplex-noise 4.0 + 직접 구현 (Perlin, Worley, fBm, Turbulence, Domain Warp) |
+| 렌더링 | HTML5 Canvas (`ImageData` + `putImageData`) |
+| 노이즈 엔진 | `simplex-noise` 4.0 + 직접 구현 (Perlin, Worley, fBm, Turbulence, Domain Warp) |
 | 스타일 | Tailwind CSS v4 |
 | 테스트 | Vitest |
-| PRNG | alea (시드 기반 결정적 난수) |
+| PRNG | `alea` (시드 기반 결정적 난수) |
+| 배포 | Vercel |
 
 ## 🎯 텍스처 프리셋 (18종)
 
@@ -71,11 +72,11 @@
 
 | 파라미터 | 설명 | 범위 | 기본값 |
 |----------|------|------|--------|
-| **크기** | 노이즈 스케일 (줌) | 1 ~ 200 | 50 |
-| **옥타브** | fBm 옥타브 수 (디테일) | 1 ~ 8 | 4 |
-| **지속성** | 옥타브별 진폭 감소율 | 0.1 ~ 0.9 | 0.5 |
-| **래큐나리티** | 옥타브별 주파수 증가율 | 1.0 ~ 4.0 | 2.0 |
-| **시드** | 난수 시드 | 0 ~ 9999 | 랜덤 |
+| **크기** (scale) | 노이즈 스케일 (줌) | 1 ~ 200 | 50 |
+| **옥타브** (octaves) | fBm 옥타브 수 (디테일) | 1 ~ 8 | 4 |
+| **지속성** (persistence) | 옥타브별 진폭 감소율 | 0.1 ~ 0.9 | 0.5 |
+| **래큐나리티** (lacunarity) | 옥타브별 주파수 증가율 | 1.0 ~ 4.0 | 2.0 |
+| **시드** (seed) | 난수 시드 | 0 ~ 9999 | 랜덤 |
 
 각 프리셋은 추가 고유 파라미터를 가집니다.
 
@@ -96,7 +97,7 @@ src/
 ├── lib/
 │   ├── noise/
 │   │   ├── simplex.ts       # Simplex 노이즈 (simplex-noise + alea)
-│   │   ├── perlin.ts        # Perlin 노이즈
+│   │   ├── perlin.ts        # Perlin 노이즈 (직접 구현)
 │   │   ├── worley.ts        # Worley/Voronoi (F1/F2)
 │   │   ├── fbm.ts           # Fractal Brownian Motion
 │   │   ├── turbulence.ts    # Turbulence (절대값 fBm)
@@ -105,24 +106,8 @@ src/
 │   ├── textures/
 │   │   ├── base.ts          # TextureGenerator 인터페이스 + 유틸리티
 │   │   ├── registry.ts      # 18개 프리셋 레지스트리
-│   │   ├── marble.ts        # 대리석
-│   │   ├── wood.ts          # 나무
-│   │   ├── granite.ts       # 화강암
-│   │   ├── sandstone.ts     # 사암
-│   │   ├── heightmap.ts     # 높이맵
-│   │   ├── cave.ts          # 동굴
-│   │   ├── lava.ts          # 용암
-│   │   ├── metal.ts         # 금속
-│   │   ├── rust.ts          # 녹
-│   │   ├── fabric.ts        # 직물
-│   │   ├── leather.ts       # 가죽
-│   │   ├── cloud.ts         # 구름
-│   │   ├── smoke.ts         # 연기
-│   │   ├── fire.ts          # 불
-│   │   ├── checkerboard.ts  # 체스판
-│   │   ├── brick.ts         # 벽돌
-│   │   ├── tile.ts          # 타일
-│   │   └── carpet.ts        # 카펫
+│   │   ├── marble.ts ~ carpet.ts  # 각 텍스처 생성기
+│   │   └── index.ts
 │   ├── colors.ts            # 색상 램프 (15종 프리셋)
 │   └── worker/
 │       ├── texture.worker.ts # Web Worker (고해상도 익스포트)
@@ -146,10 +131,10 @@ src/
 │          │   (256×256)      │  크기    ══════○ 50  │
 │ 🌿 자연   │                  │  옥타브  ══════○ 4   │
 │ ┌──┬──┐  │                  │  지속성  ══════○ 0.5 │
-│ │대│나│  │   [텍스처 이미지]  │  주파수  ══════○ 5   │
+│ │대│나│  │                  │  주파수  ══════○ 5   │
 │ │리│무│  │                  │  왜곡    ══════○ 3   │
 │ └──┴──┘  │                  │                     │
-│ 🏔 지형   │                  │  내보내기            │
+│ 🏔 지형   │   [텍스처 이미지]  │  내보내기            │
 │ ┌──┬──┐  │                  │  ─────────          │
 │ │높│동│  │                  │  해상도              │
 │ │이│굴│  │                  │  [128][256][512][1K] │
@@ -158,18 +143,18 @@ src/
 └──────────┴──────────────────┴─────────────────────┘
 ```
 
-반응형 지원: 데스크톱(3컬럼) / 태블릿(상단 갤러리 스트립) / 모바일(싱글 컬럼)
-
 ## ⚡ 성능
 
-- **실시간 미리보기**: 파라미터 변경 시 동기 렌더링 (256×256)
-- **썸네일**: IntersectionObserver 기반 지연 생성 (64×64)
-- **고해상도 익스포트**: 128/256/512/1024 해상도 PNG 다운로드
+- **실시간 미리보기**: 파라미터 변경 시 동기 렌더링 (256×256, 50ms 디바운스)
+- **썸네일**: `IntersectionObserver` 기반 지연 생성 (64×64)
+- **고해상도 익스포트**: 128 / 256 / 512 / 1024 해상도 PNG 다운로드
 - **렌더링**: `ImageData` + `putImageData` 직접 조작
+- **Web Worker**: 고해상도 생성 시 메인 스레드 블로킹 방지
 
-## 🚀 실행
+## 🚀 로컬 실행
 
 ```bash
+git clone https://github.com/sigco3111/texture-forge.git
 cd texture-forge
 npm install
 npm run dev
