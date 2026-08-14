@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
-2:I[21526,["/_next/static/chunks/0d21n0vhs4zns.js"],"ClientPageRoot"]
-3:I[52683,["/_next/static/chunks/0d21n0vhs4zns.js","/_next/static/chunks/0cci3~gbmglm8.js"],"default"]
-6:I[40599,["/_next/static/chunks/0d21n0vhs4zns.js"],"OutletBoundary"]
+2:I[29927,["/texture-forge/_next/static/chunks/0jusno7pw68xs.js"],"ClientPageRoot"]
+3:I[29418,["/texture-forge/_next/static/chunks/0jusno7pw68xs.js","/texture-forge/_next/static/chunks/0lnlwx5tak3r0.js"],"default"]
+6:I[50986,["/texture-forge/_next/static/chunks/0jusno7pw68xs.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/0cci3~gbmglm8.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"uDGcWIZC87QQe5dWW06dP"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/texture-forge/_next/static/chunks/0lnlwx5tak3r0.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"baQCbko9G6Jty_FGCg20N"}
 4:{}
 5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null
