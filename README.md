@@ -2,7 +2,7 @@
 
 > Perlin / Simplex / Worley noise 기반 18종 2D 텍스처를 브라우저에서 실시간 생성하는 도구
 
-**🔗 [라이브 데모](https://texture-forge-delta.vercel.app)**
+**🔗 [라이브 데모](https://sigco3111.github.io/texture-forge/)**
 
 절차적 생성(Procedural Generation) 기반의 텍스처 생성기입니다. 노이즈 알고리즘 파라미터를 실시간으로 조절하면서 텍스처를 미리보고, 원하는 결과를 PNG로 다운로드할 수 있습니다. 게임 개발자, 3D 아티스트, 디자이너가 브라우저에서 바로 사용할 수 있는 실용적 도구입니다.
 
@@ -19,7 +19,7 @@
 | 스타일 | Tailwind CSS v4 |
 | 테스트 | Vitest |
 | PRNG | `alea` (시드 기반 결정적 난수) |
-| 배포 | Vercel |
+| 배포 | GitHub Pages (정적 export, Vercel 사용 이력 — 2026-08 전환) |
 
 ## 🎯 텍스처 프리셋 (18종)
 
